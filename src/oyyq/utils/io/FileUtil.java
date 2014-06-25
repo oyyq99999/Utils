@@ -183,4 +183,23 @@ public class FileUtil {
         }
     }
 
+    public static boolean checkExtension(String filename, String extension, boolean ignoreCase) {
+        if (extension == null || extension.length() == 0) {
+            return true;
+        }
+        if (filename == null) {
+            return false;
+        }
+        int idx = filename.lastIndexOf(".");
+        if (idx < 0) {
+            return false;
+        }
+        String ext = filename.substring(idx + 1);
+        return ignoreCase ? extension.equalsIgnoreCase(ext) : extension.equals(ext);
+    }
+
+    public static boolean checkExtension(String filename, String extension) {
+        return checkExtension(filename, extension, true);
+    }
+
 }
